@@ -31,6 +31,7 @@ public class Launcher {
             @Override
             public void addCorsMappings(CorsRegistry corsRegistry) {
                 corsRegistry.addMapping("/quote").allowedOrigins("*");
+                corsRegistry.addMapping("/hash").allowedOrigins("*");
             }
         };
     }
