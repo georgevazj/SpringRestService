@@ -24,7 +24,7 @@ public class RestService {
     }
 
     @RequestMapping("/hash")
-    public HashModel hash(@RequestParam(value="nonce") String nonce) {
+    public HashModel hash(@RequestParam(value="nonce", defaultValue = "0000") String nonce) {
         MessageDigest messageDigest = null;
         String hashString = "";
         try {
