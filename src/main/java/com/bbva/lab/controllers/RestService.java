@@ -3,6 +3,7 @@ package com.bbva.lab.controllers;
 import com.bbva.lab.models.HashModel;
 import com.bbva.lab.models.Quote;
 import org.apache.commons.codec.binary.Hex;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,6 +21,13 @@ public class RestService {
     public Quote quote(){
         RestTemplate restTemplate = new RestTemplate();
         Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
+        return quote;
+    }
+
+    @RequestMapping(value = "/quote/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Quote quoteByID(@PathVariable("id") int id){
+        RestTemplate restTemplate = new RestTemplate();
+        Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/" + id, Quote.class);
         return quote;
     }
 
