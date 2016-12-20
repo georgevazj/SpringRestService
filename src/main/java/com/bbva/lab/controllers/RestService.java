@@ -16,14 +16,14 @@ import java.security.NoSuchAlgorithmException;
 @RestController
 public class RestService {
 
-    @RequestMapping("/quote")
+    @RequestMapping(value = "/quote", method = RequestMethod.GET)
     public Quote quote(){
         RestTemplate restTemplate = new RestTemplate();
         Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
         return quote;
     }
 
-    @RequestMapping("/hash")
+    @RequestMapping(value = "/hash", method = RequestMethod.GET)
     public HashModel hash(@RequestParam(value="nonce", defaultValue = "0000") String nonce) {
         MessageDigest messageDigest = null;
         String hashString = "";
@@ -40,6 +40,4 @@ public class RestService {
         hash.setHash(hashString);
         return hash;
     }
-
-
 }
